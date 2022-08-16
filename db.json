@@ -1,0 +1,28 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "task": "A",
+      "description": "",
+      "assigned_to": 1,
+      "status": "Completed",
+      "date_created": "2021-10-01"
+    },
+    {
+      "id": 2,
+      "task": "B",
+      "description": "Project B Description",
+      "assigned_to": 2,
+      "status": "In progress",
+      "date_created": "2021-09-31"
+    },
+    {
+      "id": 3,
+      "task": "C",
+      "description": "Project C Description",
+      "assigned_to": 1,
+      "status": "Not started",
+      "date_created": "2021-09-01"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+    mysql:
+        platform: linux/amd64
+        image: mysql:5.7
+        ports:
+            - '3306:3306'
+        volumes:
+            - ./data/mysql:/var/lib/mysql
+        restart: on-failure
+        env_file:
+            - docker.env
+
+    nginx:
+        image: nginx:1.13
+        ports:
+            - '8080:80'
+        restart: on-failure
+        volumes:
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - ./code:/code
+
+    php-fpm:
+        build: php-fpm
+        restart: on-failure
+        volumes:
+            - ./php-fpm/php.ini:/usr/local/etc/php/conf.d/custom.ini
+            - ./code:/code
