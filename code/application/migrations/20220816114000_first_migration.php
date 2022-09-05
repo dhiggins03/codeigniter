@@ -1,6 +1,6 @@
 <?php
 
-class Migration_2022081611400_first_migration extends CI_Migration {
+class Migration_first_migration extends CI_Migration {
 	// load dependencies
 	public function __construct()
 	{

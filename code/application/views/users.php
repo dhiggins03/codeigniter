@@ -67,40 +67,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 
-
 <div id="container">
-<ul>
-  <li> Item 1 </li>
-  <li> Item 2 </li>
-  <li> Item 3 </li>
-  <li> <a href="https://www.w3schools.com">Visit W3Schools</a> </li>
-</ul>
 	<div id="app">
 		<task-list></task-list>
 	</div>
-	<h1>Welcome to CodeIgniter!</h1>
+	<h1>CodeIgniter Challenge 1</h1>
 
 	<div id="body">
-		add session table to your database
-			<code>
-					CREATE TABLE IF NOT EXISTS `ci_sessions` (
-							`id` varchar(128) NOT NULL,
-							`ip_address` varchar(45) NOT NULL,
-							`timestamp` int(10) unsigned DEFAULT 0 NOT NULL,
-							`data` blob NOT NULL,
-							KEY `ci_sessions_timestamp` (`timestamp`)
-						);
-			</code>
-			<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
+		<table>
+      <tr>
+		<th>userId</th>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+      <?php
+      foreach ($users as $user) { ?>
+      <tr>
+	    <td><?echo $user->userId?></td>
+        <td><?echo $user->userForename." ".$user->userSurname?></td>
+        <td><?echo $user->userEmail?></td>
+      </tr>
+      <?}?>
+    </table>
 
-			<p>If you would like to edit this page you'll find it located at:</p>
-			<code>application/views/welcome_message.php</code>
 
-			<p>The corresponding controller for this page is found at:</p>
-			<code>application/controllers/Welcome.php</code>
 
-			<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="https://codeigniter.com/user_guide/index.html" target="_blank">User Guide</a>.</p>
-		</div>
 
 		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 	</div>
