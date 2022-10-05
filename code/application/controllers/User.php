@@ -2,7 +2,6 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class User extends CI_Controller
 {
-
     function __construct()
 	{
 		parent::__construct();
@@ -11,10 +10,10 @@ class User extends CI_Controller
 
     public function index()
     {
-
         $data = array();
   
-        if($data['users'] = $this->users_model->get_users()){
+        if($data['users'] = $this->users_model->get_users())
+        {
           $this->load->view('users', $data);
         }
     }
@@ -59,29 +58,21 @@ class User extends CI_Controller
                     $this->session->set_flashdata('feedback_colour', 'red');
                 }
                 redirect(base_url('user/newuser')); 
-            }
-         
+            } 
         }
         $this->load->view('newuser');
-
-        
     }
+
    public function edit($userid)
-   {
-   
-    $this->load->library('form_validation');
-    
+   { 
+    $this->load->library('form_validation'); 
     $user=$this->users_model->get_user($userid);
-   
     $data['user'] = $user;
+
     $post = $this->input->post();
-    // echo '<pre>';
-    // print_r($post);
-    // echo '</pre>';
-    // die();
+    
     if ($post)
-    {     
-        
+    {      
         $email = $post['email'];
         $fname = $post['fname'];
         $lname = $post['lname'];
@@ -95,25 +86,22 @@ class User extends CI_Controller
         } 
         else
         { //check if email exists
-            // echo 'changes';
-            //  die();
             if ( ! $this->users_model->get_by_email($post['email'])->row() || $email == $user->userEmail)
             {
                 $expected['fname'] = array('Label' => 'First Name', 'Validation' => 'trim|htmlspecialchars|required|min_length[2]|max_length[15]');
                 $expected['lname'] = array('Label' => 'Last Name', 'Validation' => 'trim|htmlspecialchars|required|min_length[2]|max_length[15]');
                 $expected['email'] = array('Label' => 'Email', 'Validation' => 'valid_email|trim|htmlspecialchars|required|min_length[2]|max_length[20]');
                 // setup validation
-			foreach($expected as $field=>$details)
-			{
-				$this->form_validation->set_rules($field, $details['Label'], $details['Validation']);
-			}
+			    foreach($expected as $field=>$details)
+                {
+                    $this->form_validation->set_rules($field, $details['Label'], $details['Validation']);
+                }
                //is email of current user, check rest of validation
                if ($this->form_validation->run() == FALSE)
                {   
                    $this->session->set_flashdata('feedback', 'User failed to be updated, failed validation');
                    $this->session->set_flashdata('feedback_colour', 'red'); 
                    redirect(base_url('user/edit/'.$userid)); 
-                   
                }
                else
                {   
@@ -129,16 +117,17 @@ class User extends CI_Controller
                        $this->session->set_flashdata('feedback_colour', 'green');
                    }
                     else
-                   {
+                    {
                     //update failed
                         $this->session->set_flashdata('feedback', 'User failed to be updated. Update unsuccessful');
                         $this->session->set_flashdata('feedback_colour', 'red');
-                   }
+                    }
                    redirect(base_url('user/edit/'.$userid)); 
                }
             }
             else
             {
+            
                 //email already belongs to another user
                 $this->session->set_flashdata('feedback', 'This email address is already taken.');
                 $this->session->set_flashdata('feedback_colour', 'red');
@@ -154,7 +143,6 @@ class User extends CI_Controller
         $return=array();
         $return['success']=FALSE;
         $return['msg']='Failed to delete user';
-
         if ($userid)
         {
            if ($this->users_model->delete($userid))

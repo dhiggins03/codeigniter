@@ -5,12 +5,11 @@ class Users_model extends CI_Model
     {
         $sql = "SELECT *
         FROM `users`";
-
         $query = $this->db->query($sql);
-            
-
         if ($query->num_rows() > 0 )
+        {
             return $query->result();
+        }
 
         return false;
     }
@@ -21,12 +20,12 @@ class Users_model extends CI_Model
         FROM `users`
         WHERE `userId` = ?";
         
-
         $query = $this->db->query($sql, $id);
-            
 
-        if ($query->num_rows() == 1 )
+        if ($query->num_rows() == 1 ) 
+        {
             return $query->row();
+        }
 
         return false;
     }
@@ -34,9 +33,7 @@ class Users_model extends CI_Model
     function add_user($userforename, $usersurname, $useremail) 
     {
         $this->db->query("INSERT INTO `users` (`userForename`, `userSurname`, `userEmail`)
-        VALUES
-            ('{$userforename}', '{$usersurname}', '{$useremail}');
-        ");
+        VALUES ('{$userforename}', '{$usersurname}', '{$useremail}'); ");
         if ($this->db->affected_rows() > 0)
         {
             return TRUE;
@@ -55,10 +52,14 @@ class Users_model extends CI_Model
         {
           return TRUE;
         }
+        else
+        {
         return FALSE;
+        }
     }
 
-    public function get_by_email($email){
+    public function get_by_email($email)
+    {
         return $this->db->get_where('users', array('userEmail'=>$email));
     }
 

@@ -5,9 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
-
 	<style type="text/css">
-
 	::selection { background-color: #E13300; color: white; }
 	::-moz-selection { background-color: #E13300; color: white; }
 
@@ -66,8 +64,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</style>
 	<!-- CSS only -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 	<script src="https://kit.fontawesome.com/c7876723d1.js" crossorigin="anonymous"></script>
 </head>
@@ -75,14 +74,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="container">
 	<div id="app">
-		<task-list></task-list>
+	   <task-list></task-list>
 	</div>
 	<h1>CodeIgniter Challenge 1</h1>
 
 	<div id="body">
 		<div>
 			<a href="<?php echo base_url('user/newuser')?>"><button type="button" class="btn btn-primary">Add new user <i class="fa-solid fa-user-plus"></i></button></a>
-		
+
 		</div>
     <table>
       <tr>
@@ -93,21 +92,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<th></th>
       </tr>
       <?php
-      foreach ($users as $user) { ?>
-      <tr id="user_row_<?php echo $user->userId?>">
-	    <td><?echo $user->userId?></td>
-        <td><?echo $user->userForename." ".$user->userSurname?></td>
-        <td><?echo $user->userEmail?></td>
-		<td><a href="<?php echo base_url('user/edit/'.$user->userId)?>"><button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button></a></td>
-		<td><button type="button" class="btn btn-danger" onclick="delete_user(<?php echo $user->userId;?>)"><i class="fa-solid fa-trash"></i></button></td>
-      </tr>
+      foreach ($users as $user) 
+	  { ?>
+		<tr id="user_row_<?php echo $user->userId?>">
+			<td><?echo $user->userId?></td>
+			<td><?echo $user->userForename." ".$user->userSurname?></td>
+			<td><?echo $user->userEmail?></td>
+			<td><a href="<?php echo base_url('user/edit/'.$user->userId)?>"><button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button></a></td>
+			<td><button type="button" class="btn btn-danger" onclick="delete_user(<?php echo $user->userId;?>)"><i class="fa-solid fa-trash"></i></button></td>
+		</tr>
       <?}?>
     </table>
 	<p class = 'js-update-text' style = 'color:<?php echo $this->session->flashdata('feedback_colour')?>'><?php echo $this->session->flashdata('feedback'); ?></p>
-
-
-
-		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+	
+	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 	</div>
 		<!-- 
 		******
@@ -126,9 +124,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </html>
 <script>
 
-	function delete_user(userid) 
+function delete_user(userid) 
 	{				
-		$.ajax({
+		$.ajax(
+			{
 			type : 'GET',
 			url : '/user/delete/'+userid,
 			}).done(function(json)
@@ -143,6 +142,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				{
 					toastr.error((json.msg) ? json.msg : 'There was a problem, please try again.', '', {timeOut: 1000});
 				}
-		});
+			});
 	}
 </script>

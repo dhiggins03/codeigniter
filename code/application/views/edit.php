@@ -5,9 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
-
 	<style type="text/css">
-
 	::selection { background-color: #E13300; color: white; }
 	::-moz-selection { background-color: #E13300; color: white; }
 
@@ -72,23 +70,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <h1>Edit a user</h1>
 	<div id='body'>
 		<form action="<?php echo base_url('user/edit/'.$user->userId)?>" method="post">
-		<input type="hidden" id="userId" name="userId" value="<?php echo $user->userId ?>"><br>
-		<label for="fname">First name:</label><br>
-		<input type="text" id="fname" name="fname" value="<?php echo $user->userForename ?>"><br>
-		<label for="lname">Last name:</label><br>
-		<input type="text" id="lname" name="lname" value="<?php echo $user->userSurname ?>"><br> 
-		<label for="email">Email address:</label><br>
-		<input type="text" id="email" name="email" value="<?php echo $user->userEmail?>"><br><br>
-		<input type="submit" value="Submit">
+			<input type="hidden" id="userId" name="userId" value="<?php echo $user->userId ?>"><br>
+			<label for="fname">First name:</label><br>
+			<input type="text" id="fname" name="fname" value="<?php echo $user->userForename ?>"><br>
+			<label for="lname">Last name:</label><br>
+			<input type="text" id="lname" name="lname" value="<?php echo $user->userSurname ?>"><br> 
+			<label for="email">Email address:</label><br>
+			<input type="text" id="email" name="email" value="<?php echo $user->userEmail?>"><br><br>
+			<input type="submit" value="Submit">
 		</form>
 		<p class = 'js-update-text' style = 'color:<?php echo $this->session->flashdata('feedback_colour')?>'><?php echo $this->session->flashdata('feedback'); ?></p>
 	</div>
-  
-
-
-
-
-		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+  		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 	</div>
 		<!-- 
 		******

@@ -5,9 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
-
 	<style type="text/css">
-
 	::selection { background-color: #E13300; color: white; }
 	::-moz-selection { background-color: #E13300; color: white; }
 
@@ -72,21 +70,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <h1>Add a new user</h1>
 	<div id='body'>
 		<form action="<?php echo base_url('user/newuser')?>" method="post">
-		<label for="fname">First name:</label><br>
-		<input type="text" id="fname" name="fname"><br>
-		<label for="lname">Last name:</label><br>
-		<input type="text" id="lname" name="lname"><br>
-		<label for="email">Email address:</label><br>
-		<input type="text" id="email" name="email"><br><br>
-		<input type="submit" value="Submit">
+			<label for="fname">First name:</label><br>
+			<input type="text" id="fname" name="fname"><br>
+			<label for="lname">Last name:</label><br>
+			<input type="text" id="lname" name="lname"><br>
+			<label for="email">Email address:</label><br>
+			<input type="text" id="email" name="email"><br><br>
+			<input type="submit" value="Submit">
 		</form>
 		<p class = 'js-update-text' style = 'color:<?php echo $this->session->flashdata('feedback_colour')?>'><?php echo $this->session->flashdata('feedback'); ?></p>
 	</div>
-  
-
-
-
-
 		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 	</div>
 		<!-- 
