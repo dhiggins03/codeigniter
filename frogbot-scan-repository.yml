@@ -1,0 +1,25 @@
+name: "Frogbot Scan Repository"
+on:
+  workflow_dispatch: # Allows manual triggering of the workflow
+  schedule:
+    - cron: "*/5 * * * *" # Schedule to run every 5 minutes
+permissions:
+  contents: write
+  pull-requests: write
+  security-events: write
+
+jobs:
+  scan-repository:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Frogbot
+        uses: jfrog/frogbot@v2
+        env:
+          JF_URL: ${{ secrets.JF_URL }}
+          JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
+          JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JF_GIT_BASE_BRANCH: main # Change to your target branch
+          # Add more environment variables as needed
